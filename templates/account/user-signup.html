@@ -1,0 +1,28 @@
+{% extends "home/base.html" %}
+{% load static %}
+{% block content %}
+<style>
+.modal.fade.signup.show{
+    display:block !important;
+}
+</style>
+<ul style="margin:30px;">
+<h4>
+	<li>{{form.fullName.errors.as_text}}</li>
+		
+    <li>{{form.email.errors.as_text}}</li>
+                        
+    <li>{{form.username.errors.as_text}}</li>
+            
+    <li>{{form.password1.errors.as_text}}</li>
+        
+    <li>{{form.password2.errors.as_text}}</li>
+        
+    <li>{{form.accountType.errors.as_text}}</li>
+    </h4>
+    <li><a href="JavaScript:Void(0);" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#signup"> Try again Sign
+									Up</a></li>
+    </ul>
+    
+{% endblock content %}
+		

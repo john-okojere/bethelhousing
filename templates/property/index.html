@@ -1,0 +1,191 @@
+﻿{% extends "home/base.html" %}
+{% load static %}
+{% block content %}
+<!-- ============================ Page Title Start================================== -->
+<div class="page-title">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-10 col-md-12">
+
+				<form method="POST" action="{% url 'property-search' %}"
+					class="full-search-2 eclip-search italian-search hero-search-radius shadow-hard">
+					<div class="hero-search-content">
+						<div class="row">
+							<div class="col-lg-4 col-md-4 col-sm-12 b-r">
+								<div class="form-group">
+									<div class="choose-propert-type">
+										<ul>
+											<li>
+												<input id="cp-1" value='For Sale' class="checkbox-custom" name="type"
+													type="radio" checked="">
+												<label for="cp-1" class="checkbox-custom-label">Buy</label>
+											</li>
+											<li>
+												<input id="cp-2" value='For Rent' class="checkbox-custom" name="type"
+													type="radio">
+												<label for="cp-2" class="checkbox-custom-label">Rent</label>
+											</li>
+											<li>
+												<input id="cp-3" value='Sold' class="checkbox-custom" name="type"
+													type="radio">
+												<label for="cp-3" class="checkbox-custom-label">Sold</label>
+											</li>
+
+										</ul>
+									</div>
+								</div>
+							</div>
+							<script src="{% static 'assets/js/jquery-3.5.1.min.js' %}"></script>
+							<script>
+								console.log($('#cp-1').val())
+							</script>
+							<div class="col-lg-6 col-md-5 col-sm-12 p-0 elio">
+								<div class="form-group">
+									<div class="input-with-icon">
+										<select id="address" name="name" class="form-control">
+											{% for address in location_address %}
+											<option value="{{address.id}}">{{address}}</option>
+											{% endfor %}
+										</select>
+										<img src="{% static 'assets/img/pin.svg' %}" width="20">
+									</div>
+								</div>
+							</div>
+							{% csrf_token %}
+							<div class="col-lg-2 col-md-3 col-sm-12">
+								<div class="form-group">
+									<button class="btn search-btn black" id="searchSubmit" type="submit">Search</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+</div>
+<!-- ============================ Page Title End ================================== -->
+
+<!-- ============================ All Property ================================== -->
+<section class="bg-light">
+	<div class="container">
+
+		<div class="row justify-content-center">
+			<div class="col-lg-12 col-md-12">
+				<div class="item-shorting-box">
+					<div class="item-shorting clearfix">
+						<div class="left-column pull-left">
+							<h4 class="m-0">Found {{uids| length}} Results</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+
+			<div class="col-lg-12 col-sm-12 list-layout">
+				<div class="row">
+					{% for uid in uids %}
+					<!-- Single Property Start -->
+					<div class="col-lg-6 col-md-12">
+						<div class="property-listing property-1">
+
+							<div class="listing-img-wrapper">
+								<a href="{% url 'property-view' uid.id %}">
+									<img src="{{uid.imageinfo.first.upload.url}}" class="img-fluid mx-auto" alt="">
+								</a>
+							</div>
+
+							<div class="listing-content">
+
+								<div class="listing-detail-wrapper-box">
+									<div class="listing-detail-wrapper">
+										<div class="listing-short-detail">
+											<h4 class="listing-name"><a
+													href="{% url 'property-view' uid.id %}">{{uid.basicinfo.title}}</a>
+											</h4>
+											<span class="prt-types sale">{{uid.basicinfo.status}}</span>
+										</div>
+										<div class="list-price">
+											<h6 class="listing-card-info-price">₦{{uid.basicinfo.price}}</h6>
+										</div>
+									</div>
+								</div>
+
+								<div class="price-features-wrapper">
+									<div class="list-fx-features">
+										<div class="listing-card-info-icon">
+											<div class="inc-fleat-icon"><img src="{% static 'assets/img/bed.svg' %}"
+													width="13" alt=""></div>{{uid.basicinfo.bedroom}} Beds
+										</div>
+										<div class="listing-card-info-icon">
+											<div class="inc-fleat-icon"><img src="{% static 'assets/img/bathtub.svg' %}"
+													width="13" alt=""></div>{{uid.basicinfo.bathroom}} Bath
+										</div>
+										<div class="listing-card-info-icon">
+											<div class="inc-fleat-icon"><img src="{% static 'assets/img/move.svg' %}"
+													width="13" alt=""></div>{{uid.basicinfo.area}} sqft
+										</div>
+									</div>
+								</div>
+
+								<div class="listing-footer-wrapper">
+									<div class="listing-locate">
+										<span class="listing-location"><i class="ti-location-pin"></i>
+											{{uid.locationinfo.address.name}}, {{uid.locationinfo.address.state}}</span>
+									</div>
+									<div class="listing-detail-btn">
+										<a href="{% url 'property-view' uid.id %}" class="more-btn">View</a>
+									</div>
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+					<!-- Single Property End -->
+					{% endfor %}
+
+				</div>
+				{% if uids.has_other_pages %}
+				<!-- Pagination -->
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12">
+						<ul class="pagination p-center">
+							{% if uids.has_previous %}
+							<li class="page-item">
+								<a class="page-link" href="?page={{uids.previous_page_number}}" aria-label="Previous">
+									<span class="ti-arrow-left"></span>
+									<span class="sr-only">Previous</span>
+								</a>
+							</li>
+							{% endif %}
+							{% for i in uids.paginator.page_range %}
+							{% if uids.number == i %}
+							<li class="page-item active"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+							{% else %}
+							<li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+							{% endif %}
+							{% endfor %}
+							{% if uids.has_next %}
+							<li class="page-item">
+								<a class="page-link" href="?page={{uids.next_page_number}}" aria-label="Next">
+									<span class="ti-arrow-right"></span>
+									<span class="sr-only">Next</span>
+								</a>
+							</li>
+							{% endif %}
+						</ul>
+					</div>
+				</div>
+				{% endif %}
+			</div>
+
+		</div>
+	</div>
+</section>
+<!-- ============================ All Property ================================== -->
+
+{% endblock content %}

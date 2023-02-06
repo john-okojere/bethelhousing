@@ -1,0 +1,457 @@
+﻿{% extends "home/base.html" %}
+{% load static %}
+{% block content %}	
+<script src="{% static 'assets/js/jquery-3.5.1.min.js' %}"></script>
+			<!-- ============================ Hero Banner  Start================================== -->
+			<div class="featured_slick_gallery gray">
+				<div class="featured_slick_gallery-slide">
+				{% for image in uid.imageinfo.all %}
+					<div class="featured_slick_padd"><a href="{{image.upload.url}}" class="mfp-gallery"><img src="{{image.upload.url}}" class="img-fluid mx-auto" alt=""></a></div>
+				{% endfor %}
+					
+				</div>
+				<a href="JavaScript:Void(0);" class="btn-view-pic top">View photos</a>
+			</div>
+			<!-- ============================ Hero Banner End ================================== -->
+			
+			<!-- ============================ Property Header Info Start================================== -->
+			<section class="gray-simple rtl p-0">
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-lg-11 col-md-12">
+					
+							<div class="property_block_wrap style-3">
+							
+								<div class="pbw-flex-1">
+									<div class="pbw-flex-thumb">
+										<img src="{% static 'assets/img/agency-1.png' %}" class="img-fluid" alt="">
+									</div>
+								</div>
+								
+								<div class="pbw-flex">
+									<div class="prt-detail-title-desc">
+										<span class="prt-types sale">{{uid.basicinfo.status}}</span>
+										<h3>{{uid.basicinfo.title}}</h3>
+										<span><i class="lni-map-marker"></i> {{uid.locationinfo.address}}</span>
+										<h3 class="prt-price-fix">₦{{uid.basicinfo.price}}</h3>
+										<div class="list-fx-features">
+										<div class="listing-card-info-icon">
+											<div class="inc-fleat-icon"><img src="{% static 'assets/img/bed.svg' %}" width="13" alt=""></div>{{uid.basicinfo.bedroom}} Beds
+										</div>
+										<div class="listing-card-info-icon">
+											<div class="inc-fleat-icon"><img src="{% static 'assets/img/bathtub.svg' %}" width="13" alt=""></div>{{uid.basicinfo.bathroom}} Bath
+										</div>
+										<div class="listing-card-info-icon">
+											<div class="inc-fleat-icon"><img src="{% static 'assets/img/move.svg' %}" width="13" alt=""></div>{{uid.basicinfo.area}} sqft
+										</div>
+									</div>
+									</div>
+								</div>
+								
+							</div>
+							
+						</div>	
+					</div>
+				</div>
+			</section>
+			<!-- ============================ Property Header Info Start================================== -->
+			
+			
+			<!-- ============================ Property Detail Start ================================== -->
+			<section class="gray-simple min">
+				<div class="container">
+					<div class="row">
+						
+						<!-- property main detail -->
+						<div class="col-lg-8 col-md-12 col-sm-12">
+							
+							<!-- Single Block Wrap -->
+							<div class="property_block_wrap style-2">
+								
+								<div class="property_block_wrap_header">
+									<a data-bs-toggle="collapse" data-parent="#features" data-bs-target="#clOne" aria-controls="clOne" href="javascript:void(0);" aria-expanded="false"><h4 class="property_block_title">Detail & Features</h4></a>
+								</div>
+								<div id="clOne" class="panel-collapse collapse show" aria-labelledby="clOne">
+									<div class="block-body">
+										<ul class="deatil_features">
+											<li><strong>Bedrooms:</strong>{{uid.basicinfo.bedroom}} Beds</li>
+											<li><strong>Bathrooms:</strong>{{uid.basicinfo.bathroom}} Bath</li>
+											<li><strong>Rooms:</strong>{{uid.detailinfo.Room}} </li>
+											<li><strong>Areas:</strong>{{uid.basicinfo.area}} sq ft</li>
+											<li><strong>Garage</strong>{{uid.detailinfo.garage}}</li>
+											<li><strong>Property Type:</strong>{{uid.basicinfo.type}}</li>
+											<li><strong>Age:</strong>{{uid.detailinfo.age}}</li>
+											<li><strong>Status:</strong>{{uid.basicinfo.status}}</li>
+											
+										</ul>
+									</div>
+								</div>
+								
+							</div>
+							
+							<!-- Single Block Wrap -->
+							<div class="property_block_wrap style-2">
+								
+								<div class="property_block_wrap_header">
+									<a data-bs-toggle="collapse" data-parent="#dsrp" data-bs-target="#clTwo" aria-controls="clTwo" href="javascript:void(0);" aria-expanded="true"><h4 class="property_block_title">Description</h4></a>
+								</div>
+								<div id="clTwo" class="panel-collapse collapse show">
+									<div class="block-body">
+										<p>{{uid.detailinfo.description}}</p>
+									</div>
+								</div>
+							</div>
+							
+							<!-- Single Block Wrap -->
+							<div class="property_block_wrap style-2">
+								
+								<div class="property_block_wrap_header">
+									<a data-bs-toggle="collapse" data-parent="#amen" data-bs-target="#clThree" aria-controls="clThree" href="javascript:void(0);" aria-expanded="true"><h4 class="property_block_title">Ameneties</h4></a>
+								</div>
+								
+								<div id="clThree" class="panel-collapse collapse show">
+									<div class="block-body">
+										<ul class="avl-features third color">
+											{% if uid.detailinfo.airCondition %}
+											<li>Air Condition </li>
+											{% endif %}
+											{% if uid.detailinfo.Bedding %}
+											<li>Bedding </li>
+											{% endif %}
+											{% if uid.detailinfo.Heating %}
+											<li>Heating </li>
+											{% endif %}
+											{% if uid.detailinfo.Internet %}
+											<li>Internet </li>
+											{% endif %}
+											{% if uid.detailinfo.Microwave %}
+											<li>Microwave </li>
+											{% endif %}
+											{% if uid.detailinfo.SmokingAllow %}
+											<li>Smoking Allow </li>
+											{% endif %}
+											{% if uid.detailinfo.Terrace %}
+											<li>Terrace </li>
+											{% endif %}
+											{% if uid.detailinfo.Balcony %}
+											<li>Balcony </li>
+											{% endif %}
+											{% if uid.detailinfo.Icon %}
+											<li>Icon </li>
+											{% endif %}
+											{% if uid.detailinfo.Wi_Fi %}
+											<li>Wi Fi </li>
+											{% endif %}
+											{% if uid.detailinfo.Beach %}
+											<li>Beach </li>
+											{% endif %}
+											{% if uid.detailinfo.Parking %}
+											<li>Parking </li>
+											{% endif %}
+										</ul>
+									</div>
+								</div>
+							</div>
+					
+							<!-- Single Block Wrap -->
+							<div class="property_block_wrap style-2">
+								
+								<div class="property_block_wrap_header">
+									<a data-bs-toggle="collapse" data-parent="#clSev" data-bs-target="#clSev" aria-controls="clOne" href="javascript:void(0);" aria-expanded="true" class="collapsed"><h4 class="property_block_title">Gallery</h4></a>
+								</div>
+								
+								<div id="clSev" class="panel-collapse collapse">
+									<div class="block-body">
+										<ul class="list-gallery-inline">
+				{% for image in uid.imageinfo.all %}
+
+											<li>
+												<a href="{{image.upload.url}}" class="mfp-gallery"><img src="{{image.upload.url}}" class="img-fluid mx-auto" alt=""></a>
+											</li>
+{% endfor %}											
+										</ul>
+									</div>
+								</div>
+								
+							</div>
+							
+							<!-- All over Review -->
+							<div class="rating-overview">
+								<div class="rating-overview-box">
+									<span class="rating-overview-box-total">{{uid.fivereview.total_review}}</span>
+									<span class="rating-overview-box-percent">out of 5.0</span>
+									<div class="star-rating" data-rating="5"><i class="ti-star"></i><i class="ti-star"></i><i class="ti-star"></i><i class="ti-star"></i><i class="ti-star"></i>
+									</div>
+								</div>
+
+								<div class="rating-bars">
+										<div class="rating-bars-item">
+											<span class="rating-bars-name">Service</span>
+											<span class="rating-bars-inner">
+												<span class="rating-bars-rating high" data-rating="{{uid.fivereview.service}}">
+													<span class="rating-bars-rating-inner" style="width:calc(({{uid.fivereview.service}}/5) * 100%);;">{{uid.fivereview.service}}</span>
+												</span>
+												<strong>{{uid.fivereview.service}}</strong>
+											</span>
+										</div>
+										<div class="rating-bars-item">
+											<span class="rating-bars-name">Value for Money</span>
+											<span class="rating-bars-inner">
+												<span class="rating-bars-rating good" data-rating="{{uid.fivereview.value_of_money}}">
+													<span class="rating-bars-rating-inner" style="width:calc(({{uid.fivereview.value_of_money}}/5) * 100%);"></span>
+												</span>
+												<strong>{{uid.fivereview.value_of_money}}</strong>
+											</span>
+										</div>
+										<div class="rating-bars-item">
+											<span class="rating-bars-name">Location</span>
+											<span class="rating-bars-inner">
+												<span class="rating-bars-rating mid" data-rating="{{uid.fivereview.location}}">
+													<span class="rating-bars-rating-inner" style="width:calc(({{uid.fivereview.location}}/5) * 100%);"></span>
+												</span>
+												<strong>{{uid.fivereview.location}}</strong>
+											</span>
+										</div>
+										<div class="rating-bars-item">
+											<span class="rating-bars-name">Cleanliness</span>
+											<span class="rating-bars-inner">
+												<span class="rating-bars-rating poor" data-rating="{{uid.fivereview.cleanliness}}">
+													<span class="rating-bars-rating-inner" style="width:calc(({{uid.fivereview.cleanliness}}/5) * 100%);"></span>
+												</span>
+												<strong>{{uid.fivereview.cleanliness}}</strong>
+											</span>
+										</div>
+								</div>
+							</div>
+							<!-- All over Review -->
+							
+							<!-- Single Reviews Block -->
+							<div class="property_block_wrap style-2" id="commentgf">
+								
+								<div class="property_block_wrap_header">
+									<a data-bs-toggle="collapse" data-parent="#rev" data-bs-target="#clEight" aria-controls="clEight" href="javascript:void(0);" aria-expanded="true"><h4 class="property_block_title">{{uid.comment.count}} Reviews</h4></a>
+								</div>
+								
+								<div id="clEight" class="panel-collapse collapse show">
+									<div class="block-body">
+										<div class="author-review">
+											<div class="comment-list">
+												<ul id="commentsmessages">
+															{% for comment in comments %}
+													<li class="article_comments_wrap">
+														<article>
+															
+															<div class="comment-details">
+																<div class="comment-meta">
+																	<div class="comment-left-meta">
+																		<h4 class="author-name">{{comment.name}}</h4>
+																		<div class="comment-date">{{comment.date_added}}</div>
+																	</div>
+																</div>
+																<div class="comment-text">
+																	<p>{{comment.message}}</p>
+																</div>
+															</div>
+														</article>
+													</li>
+															{% endfor %}
+												</ul>
+											</div>
+										</div>
+										<a href="#" class="reviews-checked theme-cl"><i class="fas fa-arrow-alt-circle-down mr-2"></i>See More Reviews</a>
+									</div>
+								</div>
+								
+							</div>
+						
+							<!-- Single Write a Review -->
+							<div class="property_block_wrap style-2">
+								
+								<div class="property_block_wrap_header">
+									<a data-bs-toggle="collapse" data-parent="#comment" data-bs-target="#clTen" aria-controls="clTen" href="javascript:void(0);" aria-expanded="true"><h4 class="property_block_title">Write a Review</h4></a>
+								</div>
+								
+								<div id="clTen" class="panel-collapse collapse show">
+									<div class="block-body">
+										<form class="simple-form" method= "POST">
+											<div class="row"> 
+												
+												<div class="col-lg-12 col-md-12 col-sm-12">
+													<div class="form-group">
+														<textarea class="form-control ht-80" name="message" placeholder="Messages"></textarea>
+													</div>
+												</div>
+												
+												<div class="col-lg-6 col-md-6 col-sm-12">
+													<div class="form-group">
+														<input type="text" class="form-control" name="name" placeholder="Your Name">
+													</div>
+												</div>
+												
+												<div class="col-lg-6 col-md-6 col-sm-12">
+													<div class="form-group">
+														<input type="email" class="form-control" name="email" placeholder="Your Email">
+													</div>
+												</div>
+												
+												<div class="col-lg-12 col-md-12 col-sm-12">
+													<div class="form-group">
+														<a href="#commentgf" id="submitMessage" class="btn btn-theme-light-2 rounded">Submit Review</a>
+													</div>
+												</div>
+												
+											</div>
+										</form>
+									</div>
+								</div>
+								
+							</div>
+
+						</div>
+					
+						<!-- property Sidebar -->
+						<div id="cutomer" class="col-lg-4 col-md-12 col-sm-12">
+							
+							<div class="details-sidebar">
+							
+								<!-- Agent Detail -->
+								<div class="sides-widget">
+									<div class="sides-widget-header">
+										<div class="agent-photo"></div>
+										<div class="sides-widget-details">
+											<h4>Customer Care</h4>
+											<span><i class="lni-phone-handset"></i>(91) 123 456 7895</span>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+									
+									<div class="sides-widget-body simple-form">
+										<div class="form-group">
+											<label>Email</label>
+											<input type="text" name="cemail" class="form-control" placeholder="Your Email">
+										</div>
+										<div class="form-group">
+											<label>Phone No.</label>
+											<input type="text" name="cphone" class="form-control" placeholder="Your Phone">
+										</div>
+										<div class="form-group">
+											<label>Description</label>
+											<textarea name="cdescription" class="form-control">I'm interested in this property.</textarea>
+										</div>
+										<div id="customermessagereport"></div>
+										<a href="#cutomer" id="submitCustomercareMessage" class="btn btn-black btn-md rounded full-width">Send Message</a>
+									</div>
+								</div>
+					
+								<!-- Featured Property -->
+								<div class="sidebar-widgets">
+									
+									<h4>Other Property</h4>
+									
+									<div class="sidebar_featured_property">
+										{% for other in others|slice:":4" %}
+										<!-- List Sibar Property -->
+										<div class="sides_list_property">
+											<div class="sides_list_property_thumb">
+												<img src="{% static 'assets/img/p-1.jpg' %}" class="img-fluid" alt="">
+											</div>
+											<div class="sides_list_property_detail">
+												<h4><a href="single-property-1.html">{{other.basicinfo.title}}</a></h4>
+												<span><i class="ti-location-pin"></i>{{other.locationinfo.address.name}},  {{other.locationinfo.address.state}}</span>
+												<div class="lists_property_price">
+													<div class="lists_property_types">
+														<div class="property_types_vlix sale">{{other.basicinfo.status}}</div>
+													</div>
+													<div class="lists_property_price_value">
+														<h4>₦{{other.basicinfo.price}}</h4>
+													</div>
+												</div>
+											</div>
+										</div>
+										{% endfor %}
+									</div>
+									
+								</div>
+							
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</section>
+				<script type="text/javascript">
+							$('#submitMessage').click(function (event){
+								event.preventDefault()
+								name = $('[name="name"]').val()
+								email = $('[name="email"]').val()
+								message = $('[name="message"]').val()
+								$.ajax({
+									url : "{% url 'addcomment' uid.id %}",
+									method : "POST",
+									data : {
+										name : name, 
+										email : email,
+										message : message,
+										csrfmiddlewaretoken: $('[name="csrfmiddlewaretoken"]').val()
+									},
+									success: function (data){
+										if(data.error === undefined){
+											$('#commentsmessages').append(`<li class="article_comments_wrap">
+															<article>
+																<div class="comment-details">
+																	<div class="comment-meta">
+																		<div class="comment-left-meta">
+																			<h4 class="author-name">${name}</h4>
+																			<div class="comment-date">Just now</div>
+																		</div>
+																	</div>
+																	<div class="comment-text">
+																		<p>${message}.</p>
+																	</div>
+																</div>
+															</article>
+														</li>`)
+										}
+										else{
+											console.log(data.error)
+										}
+									},
+									error: function (xhr, errmsg, err){
+										$('#reportstatus').append(" Error "+xhr.status+" : comment is invalid. ");
+									}
+								});
+				            	$('#submitMessage').addClass('disabled');
+
+							})
+							$('#submitCustomercareMessage').click(function (event){
+								event.preventDefault()
+								phone = $('[name="cphone"]').val()
+								email = $('[name="cemail"]').val()
+								description = $('[name="cdescription"]').val()
+								$.ajax({
+									url : "{% url 'messagecustomercare' uid.id %}",
+									method : "POST",
+									data : {
+										phone : phone, 
+										email : email,
+										description : description,
+										csrfmiddlewaretoken: $('[name="csrfmiddlewaretoken"]').val()
+									},
+									success: function (data){
+										if(data.error === undefined){
+											$('#customermessagereport').append(`message sent`)
+										}
+										else{
+											console.log(data.error)
+										}
+									},
+									error: function (xhr, errmsg, err){
+										$('#reportstatus').append(" Error "+xhr.status+" : comment is invalid. ");
+									}
+								});
+				            	$('#submitCustomercareMessage').addClass('disabled');
+							})
+						</script>
+			<!-- ============================ Property Detail End ================================== -->
+{% endblock content %}	
+	

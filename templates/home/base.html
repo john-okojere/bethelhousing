@@ -1,0 +1,631 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta charset='UTF-8'>
+<meta name='keywords' content='Bethel, House, real, estate, company, Kaduna nigeria, rent, sell, find house, homeless'>
+<meta name='description' content='Bethel is a real estate and housing firm that assists customers in buying and selling homes from the convenience of their own homes anywhere in the world. We gather all the required data on the asset you want to buy or sell. We have a meeting with the owner of the property you wish to purchase or sell. We have meetings with both the seller and the buyer of the property you want to purchase or sell. Either we buy the property and give the new owner possession, or we sell the property and get your money back. You will find affordable high-quality houses for sale or rent in a new area at Bethel Housing.'>
+<meta name='subject' content='Bethel Housing - Real Estate & Housing Firm'>
+<meta name='copyright' content='Bethel Housing'>
+<meta name='language' content='En'>
+<meta name='topic' content='Real Estate Company'>
+<meta name='summary' content='Bethel is a real estate and housing company that helps clients purchase and sell properties from the comfort of their respective homes from anywhere on the globe.'>
+<meta name='Classification' content='Business Real Estate '>
+<meta name='author' content='john okojere, johnokojere08@gmail.com'>
+<meta name='designer' content='john okojere, johnokojere08@gmail.com'>
+<meta name='url' content='https://www.bethelhousing.com.ng'>
+<meta name='identifier-URL' content='https://www.bethelhousing.com.ng'>
+<meta name='category' content='ecommerce'>
+<meta name='coverage' content='Worldwide'>
+<meta name='distribution' content='Global'>
+<meta name='rating' content='General'>
+<meta name='revisit-after' content='7 days'>
+<meta name='subtitle' content='Real Estate & Housing Firm'>
+
+<meta name='og:title' content='Bethel Housing - Real Estate & Housing Firm '>
+<meta name='og:type' content='Real Estate & Housing Firm'>
+<meta name='og:url' content='https://www.bethelhousing.com.ng'>
+<meta name='og:image' content='{% static 'assets/img/logo/10.png' %}'>
+<meta name='og:site_name' content='Bethel Housing'>
+<meta name='og:description' content='Bethel is a real estate and housing firm that assists customers in buying and selling homes from the convenience of their own homes anywhere in the world. We gather all the required data on the asset you want to buy or sell. We have a meeting with the owner of the property you wish to purchase or sell. We have meetings with both the seller and the buyer of the property you want to purchase or sell. Either we buy the property and give the new owner possession, or we sell the property and get your money back. You will find affordable high-quality houses for sale or rent in a new area at Bethel Housing.'>
+	<style src="{% static 'assets/css/plugins/css/bootstrap.min.css' %}"></style>
+
+	<title>Bethel Housing - Real Estate & Housing Firm {% block title %}{% endblock title %}</title>
+
+	<!-- Custom CSS -->
+	<link href="{% static 'assets/css/styles.css' %}" rel="stylesheet">
+
+	<!-- Custom Color Option -->
+	<link href="{% static 'assets/css/colors.css' %}" rel="stylesheet">
+    <link rel="icon" href="{% static 'assets/img/logo/10.png' %}" type="image/png" sizes="16x16">
+</head>
+
+<body class="blue-skin">
+
+	<!-- ============================================================== -->
+	<!-- Preloader - style you can find in spinners.css' %} -->
+	<!-- ============================================================== -->
+	<div id="preloader">
+		<div class="preloader"><span></span><span></span></div>
+	</div>
+
+	<!-- ============================================================== -->
+	<!-- Main wrapper - style you can find in pages.scss -->
+	<!-- ============================================================== -->
+	<div id="main-wrapper">
+
+		<!-- ============================================================== -->
+		<!-- Top header  -->
+		<!-- ============================================================== -->
+		<!-- Start Navigation -->
+		<div class="header header-light head-shadow">
+			<div class="container">
+				<nav id="navigation" class="navigation navigation-landscape">
+					<div class="nav-header">
+						<a class="nav-brand" href="/">
+							<img src="{% static 'assets/img/logo/1.png' %}" class="logo" alt="" />
+						</a>
+						<div class="nav-toggle"></div>
+					</div>
+					<div class="nav-menus-wrapper" style="transition-property: none;">
+						<ul class="nav-menu">
+
+							<li><a href="/">Home</a></li>
+							<li><a href="{% url 'property-home' %}">Property</a></li>
+							{% if user.is_authenticated %}
+
+							<li><a href="JavaScript:Void(0);">My Account<span class="submenu-indicator"></span></a>
+								<ul class="nav-dropdown nav-submenu">
+									<li><a href="{% url 'profile' %}">My Profile</a></li>
+									<li><a href="bookmark-list.html">Bookmarked Listings</a></li>
+									<li><a href="{% url 'logout' %}">Sign Out</a></li>
+								</ul>
+							</li>
+							{% else %}
+							{% endif %}
+							<li><a href="{% url 'about' %}">About Us</a></li>
+							{% if user.is_authenticated %}
+							<li><a href="JavaScript:Void(0);" id="chat_count" style="font-weight: bold;font-size: large;" data-bs-toggle="modal"
+									data-bs-target="#chat">Chats
+									(0)</a></li>
+							{% else %}
+							<li><a href="JavaScript:Void(0);" data-bs-toggle="modal" data-bs-target="#signup">Sign
+									Up</a></li>
+							{% endif %}
+						</ul>
+
+						<ul class="nav-menu nav-menu-social align-to-right">
+
+							<li>
+								{% if user.is_authenticated %}
+								<span>Hello, {{user.username |title}}</span>
+								 {% if user.is_staff %}
+
+								<a href="{% url 'submit' %}" class="text-success"><img
+										src="{% static 'assets/img/submit.svg' %}" width="20" alt="" class="mr-2" />Add
+									Property</a>
+									{% endif %}
+								{% else %}
+								{% endif %}
+							</li>
+							<li class="add-listing">
+								{% if user.is_authenticated %}
+								<a href="{% url 'profile' %}"><img src="{% static 'assets/img/user-light.svg' %}"
+										width="12" alt="" class="mr-2" />My Profile</a>
+								{% else %}
+								<a href="JavaScript:Void(0);" data-bs-toggle="modal" data-bs-target="#login"><img
+										src="{% static 'assets/img/user-light.svg' %}" width="12" alt=""
+										class="mr-2" />Sign In</a>
+								{% endif %}
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</div>
+		<!-- End Navigation -->
+		<div class="clearfix"></div>
+		<!-- ============================================================== -->
+		<!-- Top header  -->
+		<!-- ============================================================== -->
+		{% block content %}
+
+		{% endblock content %}
+		{% if user.is_authenticated %}
+		{% else %}
+		<!-- ============================ Call To Action ================================== -->
+		<section class="theme-bg call-to-act-wrap">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+
+						<div class="call-to-act">
+							<div class="call-to-act-head">
+								<h3>Want to Become a Real Estate Agent?</h3>
+								<span>We'll help you to grow your career and growth.</span>
+							</div>
+							<a href="{% url 'sign-up' %}" class="btn btn-call-to-act">SignUp Today</a>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- ============================ Call To Action End ================================== -->
+		{% endif %}
+		<!-- ============================ Footer Start ================================== -->
+		<footer class="dark-footer skin-dark-footer">
+			<div>
+				<div class="container">
+					<div class="row">
+
+						<div class="col-lg-3 col-md-4">
+							<div class="footer-widget">
+								<img src="{% static 'assets/img/logo/1.png' %}" class="img-footer" alt="" />
+								<div class="footer-add">
+									<p>Soul Center, Along Mothercat Road Farin Gida Mando Kaduna</p>
+									<p>+234(0) 7044 8534 44</p>
+									<p>info@bethelhousing.com.ng</p>
+								</div>
+
+							</div>
+						</div>
+						<div class="col-lg-2 col-md-4">
+							<div class="footer-widget">
+								<h4 class="widget-title">Navigations</h4>
+								<ul class="footer-menu">
+									<li><a href="{% url 'about' %}">About Us</a></li>
+									<li><a href="{% url 'faqs' %}">FAQs Page</a></li>
+									<li><a href="{% url 'contact' %}">Contact</a></li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="col-lg-2 col-md-4">
+							<div class="footer-widget">
+								<h4 class="widget-title">The Highlights</h4>
+								<ul class="footer-menu">
+									<li><a href="#">Apartment</a></li>
+									<li><a href="#">My Houses</a></li>
+									<li><a href="#">Restaurant</a></li>
+									<li><a href="#">Nightlife</a></li>
+									<li><a href="#">Villas</a></li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="col-lg-2 col-md-6">
+							<div class="footer-widget">
+								<h4 class="widget-title">My Account</h4>
+								<ul class="footer-menu">
+									{% if user.is_authenticated %}
+									<li><a href="{% url 'profile' %}">My Profile</a></li>
+
+									{% else %}
+									{% endif %}
+									<li><a href="#">My account</a></li>
+									<li><a href="#">Favorites</a></li>
+									<li><a href="#">Cart</a></li>
+								</ul>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="footer-bottom">
+				<div class="container">
+					<div class="row align-items-center">
+
+						<div class="col-lg-6 col-md-6">
+							<p class="mb-0">© 2022 Bethel. All Rights Reserved</p>
+						</div>
+
+						<div class="col-lg-6 col-md-6 text-right">
+							<ul class="footer-bottom-social">
+								<li><a href="#"><i class="ti-facebook"></i></a></li>
+								<li><a href="#"><i class="ti-twitter"></i></a></li>
+								<li><a href="#"><i class="ti-instagram"></i></a></li>
+								<li><a href="#"><i class="ti-linkedin"></i></a></li>
+							</ul>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- ============================ Footer End ================================== -->
+
+		<!-- Chat Modal -->
+		<div class="modal fade" id="chat" tabindex="-1" role="dialog" aria-labelledby="registermodal"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered login-pop-form" role="document">
+				<div class="modal-content" style="padding: 20px; " id="registermodal">
+					<span class="mod-close" data-bs-dismiss="modal" aria-hidden="true"><i class="ti-close"></i></span>
+					<h6>Chats <span id="chat-count2">(0)</span></h6>
+					<div style="overflow-x: scroll;">
+						<div style="width: max-content;">
+							<ul style="padding:10px; float: left;display: flex;">
+								{% for user in chatusers %}
+								<li style=" margin: 10px; "><a href="#"
+										style="padding: 5px; border: 1px grey solid ;border-radius: 10px;font-weight: 400;"
+										id="user-{{user.id}}-btn" onclick="openchat({{user.id}})">{{ user.username | title}} (<span id="user-{{user.id}}-count">0</span> )</a></li>
+								{% endfor %}
+							</ul>
+						</div>
+					</div>
+					<style>
+						.chatbox {
+							padding: 1em 1.5em;
+							font-size: 1em;
+							width: auto;
+							border-radius: 15px;
+						}
+
+						.right {
+							background: #1266e3;
+							color: #e0ecf5;
+						}
+
+						.left {
+							background: #e0ecf5;
+							color: #1266e3;
+						}
+					</style>
+					<div class="">
+						{% for user in chatusers %}
+						<div style="display: flow-root;" id="user-{{user.id}}">
+							<h5 class="modal-header-title"> {{user.username | title }} </h5>
+							<div class="chatscroll"
+								style=" overflow-y: scroll;scroll-behavior: smooth; max-height: 50vh;">
+								<div id="chatbox_id-{{user.id}}"
+									style="border-radius: 15px;height: 100%; border-radius: 15px; width: 100%;padding: 20px;">
+
+								</div>
+							</div>
+							<div class="form-group"
+								style="display: grid;grid-template-columns: 75% 25%;padding-top: 20px;margin-bottom: 0;">
+								{% csrf_token %}
+								<textarea style="height: 55px;" id="messageinput-{{user.id}}" name="message"
+									placeholder="Enter Message" class=" form-control simple"></textarea>
+								<a class=" btn btn-theme-2" type="submit" id="sendmessage-{{user.id}}"
+									onclick="submit('{{user.id}}')" value="send">Send</a>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Modal -->
+
+		<!-- Log In Modal -->
+		<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="registermodal"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered login-pop-form" role="document">
+				<div class="modal-content" id="registermodal">
+					<span class="mod-close" data-bs-dismiss="modal" aria-hidden="true"><i class="ti-close"></i></span>
+					<div class="modal-body">
+						<h4 class="modal-header-title">Log In</h4>
+						<div class="login-form">
+							<form method="POST" action="{% url 'login' %}">
+								{% csrf_token %}
+								<div class="form-group">
+									<label>User Name</label>
+									<div class="input-with-icon">
+										<input type="text" name="username" class="form-control" placeholder="Username">
+										<i class="ti-user"></i>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label>Password</label>
+									<div class="input-with-icon">
+										<input type="password" name="password" class="form-control"
+											placeholder="*******">
+										<i class="ti-unlock"></i>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<button type="submit"
+										class="btn btn-md full-width btn-theme-light-2 rounded">Login</button>
+								</div>
+
+							</form>
+						</div>
+						<div class="modal-divider"><span>Or login via</span></div>
+						<div class="social-login mb-3">
+							<ul>
+								<li><a href="#" class="btn connect-fb"><i class="ti-facebook"></i>Facebook</a></li>
+								<li><a href="#" class="btn connect-google"><i class="ti-google"></i>Google+</a></li>
+							</ul>
+						</div>
+						<div class="text-center">
+							<p class="mt-5"><a href="#" class="link">Forgot password?</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Modal -->
+
+		<!-- Sign Up Modal -->
+		<div class="modal fade signup" id="signup" tabindex="-1" role="dialog" aria-labelledby="sign-up"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered login-pop-form" role="document">
+				<div class="modal-content" id="sign-up">
+					<span class="mod-close" data-bs-dismiss="modal" aria-hidden="true"><i class="ti-close"></i></span>
+					<div class="modal-body">
+						<h4 class="modal-header-title">Sign Up</h4>
+						<div class="login-form">
+							<form method="POST" action="{% url 'sign-up' %}">
+								{% csrf_token %}
+								<div class="row">
+
+									<div class="col-lg-6 col-md-6">
+										<div class="form-group">
+											<div class="input-with-icon">
+												<input type="text" class="form-control" name="fullName"
+													placeholder="Full Name">
+												<i class="ti-user"></i>
+											</div>
+											{{form.fullName.errors.as_text}}
+										</div>
+									</div>
+
+									<div class="col-lg-6 col-md-6">
+										<div class="form-group">
+											<div class="input-with-icon">
+												<input type="email" class="form-control" name="email"
+													placeholder="Email">
+												<i class="ti-email"></i>
+											</div>
+											{{form.email.errors.as_text}}
+										</div>
+									</div>
+
+									<div class="col-lg-6 col-md-6">
+										<div class="form-group">
+											<div class="input-with-icon">
+												<input type="text" class="form-control" name="username"
+													placeholder="Username">
+												<i class="ti-user"></i>
+											</div>
+											{{form.username.errors.as_text}}
+										</div>
+									</div>
+
+									<div class="col-lg-6 col-md-6">
+										<div class="form-group">
+											<div class="input-with-icon">
+												<input type="password" class="form-control" name="password1"
+													placeholder="*******">
+												<i class="ti-unlock"></i>
+											</div>
+											{{form.password1.errors.as_text}}
+										</div>
+									</div>
+									<div class="col-lg-6 col-md-6">
+										<div class="form-group">
+											<div class="input-with-icon">
+												<input type="password" class="form-control" name="password2"
+													placeholder="*******">
+												<i class="ti-unlock"></i>
+											</div>
+											{{form.password2.errors.as_text}}
+										</div>
+									</div>
+
+									<div class="col-lg-6 col-md-6">
+										<div class="form-group">
+											<div class="input-with-icon">
+												<input type="phone" class="form-control" name="phone"
+													placeholder="123 546 5847">
+												<i class="lni-phone-handset"></i>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-lg-6 col-md-6">
+										<div class="form-group">
+											<div class="input-with-icon">
+												<select name="accountType" class="form-control">
+													<option value="As a Customer">As a Customer</option>
+													<option value="As a Agent">As a Agent</option>
+													<option value="As a Agency">As a Agency</option>
+												</select>
+												<i class="ti-briefcase"></i>
+											</div>
+											{{form.accountType.errors.as_text}}
+										</div>
+									</div>
+
+								</div>
+
+								<div class="form-group">
+									<button type="submit" class="btn btn-md full-width btn-theme-light-2 rounded">Sign
+										Up</button>
+								</div>
+
+							</form>
+						</div>
+						<div class="modal-divider"><span>Or login via</span></div>
+						<div class="social-login mb-3">
+							<ul>
+								<li><a href="#" class="btn connect-fb"><i class="ti-facebook"></i>Facebook</a></li>
+								<li><a href="#" class="btn connect-google"><i class="ti-google"></i>Google+</a></li>
+							</ul>
+						</div>
+						<div class="text-center">
+							<p class="mt-5"><i class="ti-user mr-1"></i>Already Have An Account? <a href="#"
+									class="link">Go For LogIn</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Modal -->
+		<script src="{% static 'assets/js/jquery-3.5.1.min.js' %}"></script>
+
+
+		<a id="back2Top" class="top-scroll" title="Back to top" href="#"><i class="ti-arrow-up"></i></a>
+		{% if user.is_authenticated %}
+		<script type="text/javascript">
+
+			{% for p in chatusers %}
+			$('#user-{{p.id}}').hide();
+
+			{% endfor %}
+			
+
+			function submit(id) {
+				message = $('#messageinput-' + id).val(),
+					$.ajax({
+						url: "/chat/" + id,
+						method: "POST",
+						data: {
+							message: message,
+							csrfmiddlewaretoken: $('[name="csrfmiddlewaretoken"]').val()
+						},
+						success: function (data) {
+							if (data.error === undefined) {
+								$('#chatbox_id-' + id).append(`<div class=" blue-skin  row" style="justify-content: right;"><div class="col-6"> </div><div style="width: auto; margin-top: 10px" class="chatbox right col-6">` + message + `</div> </div>`);
+								$('#messageinput-' + id).val('')
+							}
+							else {
+								console.log(data.error)
+							}
+						},
+						error: function (err) {
+							console.log(err)
+						}
+					})
+			}
+			function sortByProperty(property) {
+				return function (a, b) {
+					if (a[property] > b[property])
+						return 1;
+					else if (a[property] < b[property])
+						return -1;
+					return 0;
+				}
+			}
+			function reload(cid) {
+				$.ajax({
+					url: '/chat/message/' + cid,
+					method: "GET",
+					success: function (response) {
+						var userchat = response.messages
+						userchat.sort(sortByProperty('date_sent'));
+
+						$("#chatbox_id-" + cid).empty();
+						for (let i = 0; i < userchat.length; i++) {
+							if (cid == userchat[i].sender_id) {
+								var temp = `<div class=" blue-skin  row" style="justify-content: left;"><div style="width: auto;" class="chatbox col-6 left">` + userchat[i].message + `</div><div class="col-6"> </div></div>`
+							}
+							else {
+								var temp = `<div class=" blue-skin  row" style="justify-content: right;"><div class="col-6"> </div><div style="width: auto; margin:5px 0" class="chatbox right col-6">` + userchat[i].message + `</div> </div>`
+							}
+							$('#chatbox_id-' + cid).append(temp)
+
+						}
+
+					},
+					error: function (err) {
+						console.log(err.responseText)
+					}
+
+				})
+				
+			}
+			var chatcount = document.getElementById("chat_count")
+			var chatcount2 = document.getElementById("chat-count2")
+			setInterval(() => {
+				$.ajax({
+					url: '/chat/unreadMessage/',
+					method: "GET",
+					success: function (response) {
+						if (response.unread_messages > 0 ) {
+							chatcount.style.color = 'red';
+						}
+						chatcount.innerText = 'Chats(' + response.unread_messages + ')';
+						chatcount2.innerText = '(' + response.unread_messages + ')';
+
+					},
+					error: function (err) {
+						console.log(err.responseText)
+					}
+				})
+				{% for i in chatusers %}
+					var chatucount{{i.id}} = document.getElementById("user-{{i.id}}-count");
+					$.ajax({
+						url: '/chat/unreadSomeoneMessage/' + {{i.id}},
+						method: "GET",
+						success: function (response) {
+							if (response.unread_messages > 0 ) {
+								chatucount{{i.id}}.style.color = 'red';
+							}
+							chatucount{{i.id}}.innerText = response.unread_messages ;
+
+						},
+						error: function (err) {
+							console.log(err.responseText)
+						}
+					})
+				{% endfor %}
+			}, 1000);
+
+			function openchat(id) {
+				setInterval(() => {
+					reload(id)
+					$(".chatscroll").animate({scrollTop: $(".chatscroll")[0].scrollHeight}, "slow");
+				}, 1000);
+				m = {{chatusers.count}} + 2;
+				for (let i = 0; i < m; i++) {
+					if ( i == id) {
+						$('#user-' + i).show();
+						console.log(i)
+					}else{
+						$('#user-' + i).hide();
+
+					}
+				}
+
+			}
+			
+
+		</script>
+
+		{% endif %}
+	</div>
+	<!-- ============================================================== -->
+	<!-- End Wrapper -->
+	<!-- ============================================================== -->
+
+	<!-- ============================================================== -->
+	<!-- All Jquery -->
+	<!-- ============================================================== -->
+	<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+	<script src="{% static 'assets/js/popper.min.js' %}"></script>
+	<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'assets/js/rangeslider.js' %}"></script>
+	<script src="{% static 'assets/js/select2.min.js' %}"></script>
+	<script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+	<script src="{% static 'assets/js/slick.js' %}"></script>
+	<script src="{% static 'assets/js/slider-bg.js' %}"></script>
+	<script src="{% static 'assets/js/lightbox.js' %}"></script>
+	<script src="{% static 'assets/js/imagesloaded.js' %}"></script>
+
+	<script src="{% static 'assets/js/custom.js' %}"></script>
+	<!-- ============================================================== -->
+	<!-- This page plugins -->
+	<!-- ============================================================== -->
+
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+{% extends "home/base.html" %}
+{% load static %}
+{% block title %}
+ | Homepage
+{% endblock title %}
+{% block content %}
+			<!-- ============================ Property Location Start ================================== -->
+			<section>
+				<div class="container">
+					
+					<div class="row justify-content-center">
+						<div class="col-lg-7 col-md-10 text-center">
+							<div class="sec-heading center">
+								<h2>Find Properties By Locations</h2>
+								<p>You can locate homes or any other properties in Bethel housing, based on the location.</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row">
+					{% for address in location_address %}
+						<div class="col-lg-4 col-md-4">
+							<div class="location-property-wrap">
+								<div class="location-property-thumb">
+									<a href="{% url 'address-property-info' address.id %}">
+									<img src="{{address.image.url}}" class="img-fluid" alt="" />
+									</a>
+								</div>
+								<div class="location-property-content">
+									<div class="lp-content-flex">
+										<h4 class="lp-content-title">{{address.name}}, {{address.state}}</h4>
+										<span>{{address.property }} Properties</span>
+									</div>
+									<div class="lp-content-right">
+										<a href="{% url 'address-property-info' address.id %}" class="lp-property-view"><i class="ti-angle-right"></i></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+						
+					</div>
+					
+				
+				</div>
+			</section>
+			<!-- ============================ Property Location End ================================== -->
+
+{% endblock content %}
+		
