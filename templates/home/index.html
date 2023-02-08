@@ -1,4 +1,5 @@
 {% extends "home/base.html" %}
+{% load humanize %}
 {% load static %}
 {% block title %}
  | Homepage
@@ -207,7 +208,7 @@
 											<h4 class="listing-name verified"><a href="{% url 'property-view' uid.id %}" class="">{{uid.basicinfo.title}}</a></h4>
 										</div>
 										<div class="listing-short-detail-flex">
-											<h6 class="listing-card-info-price">₦{{uid.basicinfo.price}}</h6>
+											<h6 class="listing-card-info-price">₦{{uid.basicinfo.price | intcomma}}</h6>
 										</div>
 									</div>
 								</div>

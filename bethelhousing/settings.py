@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    #Packages
+    'django.contrib.humanize',
+
     # apps
     'users.apps.UsersConfig',
     'chats.apps.ChatsConfig',
